@@ -16,9 +16,9 @@ To that I say sir:
 
 So, if we gotta make OOPs-like features in C, we gotta start thinking in _"Classes"_. Classes in OOPs languages contain data and functions and that's their major advantage. The closest thing to such an arrangement in C would be `Structs`. They already contain different kinds of data, so that's half the job done. Now comes the fun part: Function Pointers. 
 
-For those of you unfamiliar with Function Pointers, they are essentially just pointer, which point to functions (duh). And since they are essentially pointers, we can store their value in a struct, which, in a way would allow the structs to store functions as well, a lot like classes.
+For those of you unfamiliar with Function Pointers, they are essentially just pointers, which point to functions (duh). And since they are essentially pointers, we can store their value in a struct, which, in a way would allow the structs to store functions as well, a lot like classes.
 
-Function pointers might looks scary at first, but they are easy once you grasp a hold of them. For example, consider the following C function:
+Function pointers might look scary at first, but they are easy once you grasp a hold of them. For example, consider the following C function:
 ```c
 int add(int a, int b) {
     return a+b;
@@ -33,7 +33,7 @@ add_ptr = &add; // Assign the address of the 'add' function to the function poin
 
 > Note that you can directly use `add_ptr = add`; as the function name decays to a pointer
 
-Then you can use the function pointer inplace of the function with:
+Then you can use the function pointer in place of the function with:
 ```c
 add_ptr(3, 5);
 ```
@@ -41,7 +41,7 @@ add_ptr(3, 5);
 Neat, so now that we have a way of combining data and functions in a struct, let us see an example of this.
 
 ## Show and Tell
-In this repository, we write a very simple program which takes in a domain name and resolves the corresponding IPv4 and IPv6 addresses.
+In this repository, we write a very simple program that takes in a domain name and resolves the corresponding IPv4 and IPv6 addresses.
 
 The header file in `includes/domaininfo.h` contains the following struct and function :
 ```c
@@ -66,17 +66,17 @@ The struct contains the following "data" fields:
 - `ipv6`: The IPv6 address of the associated domain
 
 It also contains pointers to the following functions (which we can consider analogous to the methods of a Class):
-- `resolve`: A pointer to a function which takes a pointer to a `DomainInfo` struct and returns an `int`. This function would be responsible for resolving the domain name into IP addresses.
-- `display`:  A pointer to a function which takes a pointer to a `DomainInfo` struct and returns nothing, aka, `void`. This function would print the contents of the struct. 
+- `resolve`: A pointer to a function that takes a pointer to a `DomainInfo` struct and returns an `int`. This function would be responsible for resolving the domain name into IP addresses.
+- `display`:  A pointer to a function that takes a pointer to a `DomainInfo` struct and returns nothing, aka, `void`. This function would print the contents of the struct. 
 
 There is another function worth mentioning and that is the `init()` function which has the following definition:
 ```c
 DomainInfo * init(char *domain);
 ```
 
-This function is analogous to a constructor in OOPs classes as it allocates memory for the `DomainInfo` struct on the heap. intializes it with the domain name and copies over the address of the functions into their respective pointers. I will skip the internal workings of these functions but feel free to check out the code (dont be lazy, go ahead, it wont hurt you to read a little code. I have left comments along the way).
+This function is analogous to a constructor in OOPs classes as it allocates memory for the `DomainInfo` struct on the heap. initializes it with the domain name and copies over the address of the functions into their respective pointers. I will skip the internal workings of these functions but feel free to check out the code (don't be lazy, go ahead, it won't hurt you to read a little code. I have left comments along the way).
 
-However, lets look at the `main()` function:
+However, let's look at the `main()` function:
 ```c
 int main(int argc, char * argv[]) {
     printf("[i] Resolve IPv4 from Domain Name in C - Oops style\n");
